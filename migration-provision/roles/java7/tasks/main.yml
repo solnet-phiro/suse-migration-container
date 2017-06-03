@@ -1,0 +1,23 @@
+---
+  - name: Assure java path
+    file:
+      state: directory
+      path: /opt/java
+      owner: root
+      group: wheel
+  - name: Assure jdk7 path
+    file:
+      state: directory
+      path: /opt/java/jdk7
+  - name: Install java
+    unarchive:
+      src: jdk-7u80-linux-x64.tar.gz
+      dest: /opt/java/jdk7
+      owner: root
+      group: wheel
+  - name: Link to java
+    file:
+      state: link
+      src: /opt/java/jdk7/jdk1.7.0_80/bin/java
+      dest: /usr/bin/java
+      force: yes

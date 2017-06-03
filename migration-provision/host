@@ -1,2 +1,2 @@
 [all]
-localhost ansible_port=2222 ansible_user=vagrant ansible_ssh_pass=vagrant ansible_become_pass=vagrant
+localhost ansible_port=2222 ansible_user=vagrant ansible_ssh_pass=vagrant ansible_become_pass=vagrant muleUser=mule muleGroup=mule muleBaseVersion=3.5.2 muleTargetVersion=3.8.0

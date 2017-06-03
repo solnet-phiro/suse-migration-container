@@ -1,8 +1,29 @@
 ---
-  - name: assure mule user
+  - name: Assure mule group exists
+    group:
+      name: "{{ muleGroup }}"
+  - name: assure mule user is there
     user:
-      name: mule
+      name: "{{ muleUser }}"
+      groups: "{{ muleUser }}"
+      append: yes
       state: present
       generate_ssh_key: yes
       ssh_key_bits: 4096
       ssh_key_file: .ssh/id_rsa_mule
+  - name: Install an editor for convience
+    zypper:
+      name: vim
+      state: present
+  - name: Create mule conf folder
+    file:
+      state: directory
+      path: /opt/mule-app-conf
+      owner: "{{ muleUser }}"
+      group: "{{ muleGroup }}"
+  - name: Create log folder for mule
+    file:
+      state: directory
+      path: /var/log/mule
+      owner: "{{ muleUser }}"
+      group: "{{ muleGroup }}"

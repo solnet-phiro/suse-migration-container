@@ -1,0 +1,13 @@
+---
+  - name: Install mule app
+    unarchive:
+      src: "mule-ee-distribution-standalone-{{ muleTargetVersion }}.tar.gz"
+      dest: /opt
+      owner: "{{ muleUser }}"
+      group: "{{ muleGroup }}"
+  - name: Link mule
+    file:
+      state: link
+      src: "/opt/mule-enterprise-standalone-{{ muleTargetVersion }}"
+      dest: /opt/mule-esb
+      force: yes

@@ -1,0 +1,13 @@
+---
+  - name: copy license
+    copy:
+      src: mule-ee-license.lic
+      dest: /opt/mule-esb/bin/mule-ee-license.lic
+      owner: "{{ muleUser }}"
+      group: "{{ muleGroup }}"
+  - name: Apply license
+    shell: /opt/mule-esb/bin/mule -installLicense /opt/mule-esb/bin/mule-ee-license.lic
+    register: licenseApply
+  - name: Get result licensing
+    debug:
+      msg: "{{ licenseApply.stdout_lines }}"
